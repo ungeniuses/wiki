@@ -18,8 +18,10 @@ function profileLinks(github, socials) {
 }
 
 async function loadMembers() {
-  const base = document.querySelector("base")?.href || window.location.origin + "/";
-  const res = await fetch(base + "data/members.json");
+  const base = document.querySelector("base")?.href || (window.location.origin + "/");
+  const url = new URL("data/members.json", base).href;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Failed to load members.json: ${res.status} ${res.statusText}`);
   return res.json();
 }
 
@@ -45,6 +47,7 @@ async function renderMemberHeader() {
   const header = document.getElementById("member-header");
   if (!header) return;
   const id = header.dataset.memberId;
+  if (!id) return; // guard: missing or empty data-member-id attribute
   const members = await loadMembers();
   const m = members.find(x => x.id === id);
   if (!m) return;
@@ -56,8 +59,8 @@ async function renderMemberHeader() {
 }
 
 function initMembers() {
-  renderMemberGrid();
-  renderMemberHeader();
+  renderMemberGrid().catch(err => console.error("[members] grid error:", err));
+  renderMemberHeader().catch(err => console.error("[members] header error:", err));
 }
 
 document.addEventListener("DOMContentLoaded", initMembers);
