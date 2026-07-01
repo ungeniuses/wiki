@@ -18,7 +18,8 @@ function profileLinks(github, socials) {
 }
 
 async function loadMembers() {
-  const base = document.querySelector("base")?.href || (window.location.origin + "/");
+  // __md_scope is set by MkDocs Material to the site root on every page
+  const base = window.__md_scope?.href || (window.location.origin + "/");
   const url = new URL("data/members.json", base).href;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to load members.json: ${res.status} ${res.statusText}`);
