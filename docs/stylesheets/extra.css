@@ -1,0 +1,80 @@
+:root {
+  --gray-100: rgba(255, 255, 255, 0.1);
+  --gray-200: rgba(255, 255, 255, 0.2);
+  --gray-500: rgba(255, 255, 255, 0.5);
+  --color-link:         #84b2ff;
+  --color-visited-link: #b88dff;
+  --body-background:    #343a40;
+  --body-font-color:    #f8f9fa;
+  --icon-filter:        brightness(0) invert(1);
+  --hint-color-info:    #66bbff;
+  --hint-color-warning: #ffdd66;
+  --hint-color-danger:  #ff6666;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--body-background);
+  --md-default-fg-color: var(--body-font-color);
+  --md-typeset-a-color: var(--color-link);
+  --md-typeset-a-color--visited: var(--color-visited-link);
+  --md-admonition-icon--info: var(--hint-color-info);
+  --md-admonition-icon--warning: var(--hint-color-warning);
+  --md-admonition-icon--danger: var(--hint-color-danger);
+}
+
+.members-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  padding: 1rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  color: var(--body-font-color);
+  transition: border-color 0.15s ease;
+}
+
+.member-card:hover {
+  border-color: var(--color-link);
+}
+
+.member-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.member-avatar-large {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+
+.member-name {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+
+.member-socials {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.social-icon {
+  color: var(--color-link);
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.github-link {
+  color: var(--gray-500);
+  text-decoration: none;
+}
