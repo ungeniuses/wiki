@@ -1,6 +1,6 @@
-# GigaVector
+# reader.cpp
 
-A C-based vector database.
+A C++-based terminal RSVP.
 
 ## Overview
 
@@ -8,4 +8,4 @@ Write project details here.
 
 ## Repository
 
-[github.com/builders-lab/gigavector](https://github.com/builders-lab/gigavector)
+[https://github.com/ungeniuses/reader.cpp](https://github.com/ungeniuses/reader.cpp)

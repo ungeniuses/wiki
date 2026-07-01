@@ -33,7 +33,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
   padding: 1rem;
   border: 1px solid var(--gray-200);
   border-radius: 8px;
@@ -43,6 +42,14 @@
 
 .member-card:hover {
   border-color: var(--color-link);
+}
+
+.member-card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--body-font-color);
 }
 
 .member-avatar {
@@ -62,19 +69,45 @@
   font-weight: bold;
 }
 
-.member-socials {
+.member-links {
   display: flex;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
 }
 
-.social-icon {
+.profile-link {
+  font-size: 0.9rem;
+}
+
+.profile-link-key {
+  font-weight: 600;
+  color: var(--body-font-color);
+}
+
+.profile-link-sep {
+  color: var(--gray-500);
+}
+
+.profile-link-url {
   color: var(--color-link);
   text-decoration: none;
-  font-size: 1.1rem;
 }
 
-.github-link {
-  color: var(--gray-500);
-  text-decoration: none;
+.profile-link-url:hover {
+  text-decoration: underline;
+}
+
+#member-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.member-name-large {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0;
 }

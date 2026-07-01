@@ -2,4 +2,4 @@
 
 | Project | Description | Status |
 |---|---|---|
-| [GigaVector](gigavector.md) | C-based vector database | Active |
+| [reader.cpp](reader.cpp.md) | C++-based terminal RSVP | Active |

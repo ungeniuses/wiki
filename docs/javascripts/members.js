@@ -1,10 +1,21 @@
-const SOCIAL_ICONS = {
-  twitter: "𝕏",
-  discord: "💬",
-  website: "🔗",
-  linkedin: "in",
-  youtube: "▶"
-};
+function titleCase(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function profileLinks(github, socials) {
+  const links = [
+    { key: "Github", url: `https://github.com/${github}` },
+    ...Object.entries(socials || {}).map(([k, url]) => ({ key: titleCase(k), url }))
+  ];
+  return links
+    .map(({ key, url }) => `
+      <div class="profile-link">
+        <span class="profile-link-key">${key}</span>
+        <span class="profile-link-sep"> : </span>
+        <a href="${url}" target="_blank" class="profile-link-url">${url}</a>
+      </div>`)
+    .join("");
+}
 
 async function loadMembers() {
   const base = document.querySelector("base")?.href || window.location.origin + "/";
@@ -16,22 +27,17 @@ function githubAvatar(username) {
   return `https://github.com/${username}.png?size=200`;
 }
 
-function socialLinks(socials) {
-  return Object.entries(socials || {})
-    .map(([key, url]) => `<a href="${url}" class="social-icon" title="${key}" target="_blank">${SOCIAL_ICONS[key] || key}</a>`)
-    .join("");
-}
-
 async function renderMemberGrid() {
   const grid = document.getElementById("members-grid");
   if (!grid) return;
   const members = await loadMembers();
   grid.innerHTML = members.map(m => `
-    <a class="member-card" href="../${m.id}/">
-      <img src="${githubAvatar(m.github)}" class="member-avatar" alt="${m.name}">
-      <div class="member-name">${m.name}</div>
-      <div class="member-socials">${socialLinks(m.socials)}</div>
-    </a>
+    <div class="member-card">
+      <a class="member-card-link" href="${m.id}/">
+        <img src="${githubAvatar(m.github)}" class="member-avatar" alt="${m.name}">
+        <div class="member-name">${m.name}</div>
+      </a>
+    </div>
   `).join("");
 }
 
@@ -44,9 +50,8 @@ async function renderMemberHeader() {
   if (!m) return;
   header.innerHTML = `
     <img src="${githubAvatar(m.github)}" class="member-avatar-large" alt="${m.name}">
-    <h1>${m.name}</h1>
-    <a href="https://github.com/${m.github}" target="_blank" class="github-link">@${m.github}</a>
-    <div class="member-socials">${socialLinks(m.socials)}</div>
+    <span class="member-name-large">${m.name}</span>
+    <div class="member-links">${profileLinks(m.github, m.socials)}</div>
   `;
 }
 
